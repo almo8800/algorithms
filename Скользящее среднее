@@ -1,0 +1,38 @@
+Скользящее среднее
+{
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source":
+func function(_ array: [Double], _ k: Int) -> [Double] {
+    var result = [Double]()
+    var currentSumm = array.prefix(k).reduce(0, +)
+    result.append(currentSumm / Double(k))
+
+    for i in 0..<(array.count - k) {
+        currentSumm -= array[i]
+        currentSumm += array[i+k]
+        let currentAvg = currentSumm / Double(k)
+        result.append(currentAvg)
+    }
+
+    return result
+}
+
+let sec = Double(readLine()!)!
+let arr = readLine()!.split(separator: " ").map { (x: Substring) -> Double in
+        return Double(x)!
+    }
+let k = Int(readLine()!)!
+
+func printArray<T>(_ a: [T]) {
+    for element in a {
+        print(element, terminator: " ")
+    }
+}
+
+let resultat = function(arr, k)
+printArray(resultat)
+]
+}
